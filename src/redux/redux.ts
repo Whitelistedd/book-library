@@ -4,7 +4,9 @@ const BookRedux = createSlice({
     name: 'test',
     initialState: {
         Search: "",
-        BookId: ""
+        BookId: "",
+        Category: "all",
+        SortBy: "relevance",
     },
     reducers: {
       SearchBooks: (state, action: PayloadAction<string>) => {
@@ -14,9 +16,15 @@ const BookRedux = createSlice({
       setBookId: (state,action: PayloadAction<string>) => {
         state.Search = ""
         state.BookId = action.payload
+      },
+      setCategory: (state,action: PayloadAction<string>) => {
+        state.Category = action.payload
+      },
+      setSortBy: (state,action: PayloadAction<string>) => {
+        state.SortBy = action.payload
       }
     },
 })
 
-export const { SearchBooks,setBookId } = BookRedux.actions;
+export const { SearchBooks,setBookId,setCategory,setSortBy } = BookRedux.actions;
 export default BookRedux.reducer;

@@ -14,11 +14,13 @@ export const Home = () => {
     const [booksCount,setBooksCount] = useState<number>(0)
     const SearchValue = useAppSelector(state => state.Search)
     const BookId = useAppSelector(state => state.BookId)
+    const Category = useAppSelector(state => state.Category)
+    const SortBy = useAppSelector(state => state.SortBy)
 
     useEffect(() => {
       const getBooks = async () => {
         try {
-          const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${SearchValue ? SearchValue : `""`}&key=AIzaSyBl9KhX_Ft0D2LvxwV-6bnS_2xLPPGSTpg`)
+          const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?orderBy=${SortBy}&q=${SearchValue ? SearchValue : `""`}${Category !== "all" ? `subject:${Category}` : ""}&maxResults=30`)
           setBooksCount(response.data.totalItems)
           setAllBooks(response.data.items)
         } catch(err) {
@@ -27,7 +29,7 @@ export const Home = () => {
       } 
     
       getBooks()
-    },[SearchValue])
+    },[SearchValue,Category,SortBy])
   
     return (
       <Container>
