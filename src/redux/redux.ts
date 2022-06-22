@@ -28,18 +28,21 @@ const BookRedux = createSlice({
         state.Search = ""
         state.BookId = action.payload
       },
+      // сбросит книги и применит новую категорию
       setCategory: (state,action: PayloadAction<string>) => {
         state.allBooks = []
         state.PageCount = 0
         state.BookId = ""
         state.Category = action.payload
       },
+      // сбросит книги и применит новую сортировку
       setSortBy: (state,action: PayloadAction<string>) => {
         state.allBooks = []
         state.PageCount = 0
         state.BookId = ""
         state.SortBy = action.payload
       },
+      // изменит startIndex поиска
       addMorePageCount: (state) => {
         state.PageCount += 30
       },

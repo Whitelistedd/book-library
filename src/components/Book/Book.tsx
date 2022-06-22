@@ -15,14 +15,9 @@ export const Book : React.FC<BookProps> = ({id,Info}) => {
 
     return (
     <Container onClick={() => handleBookId(id)} >
-        {/* {Info.imageLinks.thumbnail ?
-            <Image src={Info?.imageLinks?.thumbnail} />
-        :
-            <Image
-        } */}
         <Image src={Info?.imageLinks?.thumbnail} />
         <InfoWrap>
-            <Category>{Info?.categories?.join(",")}</Category>
+            <Category>{Info?.categories?.[0]}</Category>
             <BookName>{Info?.title}</BookName>
             <Authors>{Info?.authors?.join(",")}</Authors>
         </InfoWrap>

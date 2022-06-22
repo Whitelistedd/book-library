@@ -20,12 +20,12 @@ export const Books : React.FC<BooksProps> = ({booksCount,allBooks}) => {
     <Container>
         <Results>Found {booksCount} results</Results>
         <BooksContainer>
-          {Loading &&
+          {Loading && // покажет 4 книги состояния загрузки
           [1,2,3,4].map((index) => 
           <BookSkeleton key={index} />  
           )
           }
-          {!Loading && allBooks?.map((book,index) => (
+          {!Loading && allBooks?.map((book,index) => ( // покажет настоящие книги
               <Book
               key={index}
               id={book.id}
@@ -33,7 +33,7 @@ export const Books : React.FC<BooksProps> = ({booksCount,allBooks}) => {
               />
           ))}
         </BooksContainer>
-        {!Loading && <Button onClick={() => LoadMoreBooks()} >Load More</Button>}
+        {!Loading && <Button onClick={() => LoadMoreBooks()} >Load More</Button> /* по клику загрузится больше книг */}
     </Container>
   )
 }
