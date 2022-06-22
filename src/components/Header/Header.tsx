@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import HeaderBackground from '../../assets/images/headerBackground.webp';
 import SearchIcon from '../../assets/images/SearchIcon.svg';
 import { AllCategories, AllSorts } from '../../data';
+import { devices } from '../../devices';
 import { SearchBooks, setCategory, setSortBy } from '../../redux/redux';
 import { AppDispatch } from '../../redux/store';
 
@@ -12,12 +13,14 @@ export const Header : React.FC = () => {
   const [inputValue,setInputValue] = useState<string>("")
   const dispatch = AppDispatch();
 
-  const handleSearch = (event : KeyboardEvent<HTMLInputElement>) => {
+  // изменит состояние, только если вы нажмете ввод в строке поиска
+  const handleSearch = (event : KeyboardEvent<HTMLInputElement>) => { 
     if(event.key === "Enter") {
       dispatch(SearchBooks(inputValue))
     }
   }
 
+   // изменит состояние, если вы нажмете на значок поиска
   const handleClickSearch = () => {
     dispatch(SearchBooks(inputValue))
   }
@@ -47,8 +50,8 @@ export const Header : React.FC = () => {
             <option key={category} >{category}</option>  
             )}
           </Select>
-          <Label>SortBy</Label>
-          <Select name="sortby" onChange={(event) => handleSelection(event)} >
+          <Label htmlFor='sortby' >SortBy</Label>
+          <Select id="sortby" name="sortby" onChange={(event) => handleSelection(event)} >
             {AllSorts.map(sort => 
             <option key={sort} >{sort}</option>  
             )}
@@ -61,6 +64,7 @@ export const Header : React.FC = () => {
 const Label = styled.label`
   color: white;
   font-size: 1.6em;
+  text-shadow: 0px 0px 10px black;
 `
 
 const Select = styled.select`
@@ -72,6 +76,7 @@ const Selections = styled.div`
   display: flex;
   gap: 1em;
   align-items: center;
+  justify-content: center;
 `
 
 const Image = styled.img``
@@ -90,15 +95,15 @@ const SearchBar = styled.div`
   background-color: white;
   padding: 0em 1em;
   width: 40%;
-  min-width: 30%;
 `
 
 const Title = styled.h1`
   color: white;
   font-size: 2.5em;
+  text-shadow: 0px 0px 10px black;
 `
 
-const Container = styled.div`
+const Container = styled.header`
   background: url(${HeaderBackground});
   background-position: center;
   background-size: cover;
@@ -110,4 +115,13 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 1em;
+  
+  @media only screen and (max-width: ${devices.Tablet}) {
+    ${Selections} {
+      font-size: 10px;
+    }
+    ${SearchBar} {
+      min-width: 80%;
+    }
+  }
 `

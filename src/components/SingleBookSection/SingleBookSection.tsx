@@ -2,19 +2,20 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { devices } from '../devices';
-import { useAppSelector } from '../redux/store';
-import { BookFetchResponse } from '../types';
+import { devices } from '../../devices';
+import { useAppSelector } from '../../redux/store';
+import { BookFetchResponse } from '../../types';
 
-export const SingleBookPage = () => {
+export const SingleBookSection : React.FC = () => {
 
     const [Book,setBook] = useState<BookFetchResponse>();
-    const bookId = useAppSelector(state => state.BookId)
+    const {BookId} = useAppSelector(state => state)
   
+    // получить данные книги, которая была выбрана
     useEffect(() => {
       const getBooks = async () => {
         try {
-          const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
+          const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${BookId}`)
           setBook(response.data)
         } catch(err) {
           console.log(err)
@@ -22,8 +23,9 @@ export const SingleBookPage = () => {
       } 
   
       getBooks()
-    },[bookId])
+    },[BookId])
 
+    // сократит любой текст длиной более 400 символов
     const limitWords = (text: string = "") => {
       if(text.length > 400) {
         return `${text?.substring(0,400)}...`

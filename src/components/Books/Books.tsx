@@ -1,15 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useAppSelector } from '../../redux/store';
 import { BooksProps } from '../../types';
 import { Book } from '../Book/Book';
+import { BookSkeleton } from '../BookSkeleton/BookSkeleton';
 
 export const Books : React.FC<BooksProps> = ({booksCount,allBooks}) => {
+
+  const {Loading} = useAppSelector(state => state)
+
   return (
     <Container>
         <Results>Found {booksCount} results</Results>
         <BooksContainer>
-          {allBooks?.map((book,index) => (
+          {Loading &&
+          [1,2,3,4].map(book => 
+          <BookSkeleton />  
+          )
+          }
+          {!Loading && allBooks?.map((book,index) => (
               <Book
               key={index}
               id={book.id}

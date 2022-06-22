@@ -18,9 +18,9 @@ export const Book : React.FC<BookProps> = ({id,Info}) => {
     <Container onClick={() => handleBookId(id)} >
         <Image src={Info?.imageLinks?.thumbnail} />
         <InfoWrap>
-            <Category>{Info.categories?.join(",")}</Category>
-            <BookName>{Info.title}</BookName>
-            <Authors>{Info.authors?.join(",")}</Authors>
+            <Category>{Info?.categories?.join(",")}</Category>
+            <BookName>{Info?.title}</BookName>
+            <Authors>{Info?.authors?.join(",")}</Authors>
         </InfoWrap>
     </Container>
   )
