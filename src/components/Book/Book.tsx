@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { setBookId } from '../../redux/redux';
@@ -16,6 +15,11 @@ export const Book : React.FC<BookProps> = ({id,Info}) => {
 
     return (
     <Container onClick={() => handleBookId(id)} >
+        {/* {Info.imageLinks.thumbnail ?
+            <Image src={Info?.imageLinks?.thumbnail} />
+        :
+            <Image
+        } */}
         <Image src={Info?.imageLinks?.thumbnail} />
         <InfoWrap>
             <Category>{Info?.categories?.join(",")}</Category>
@@ -45,7 +49,7 @@ const InfoWrap = styled.div``
 const Image = styled.img`
     
     min-width: 45%;
-    min-height: 50%;
+    min-height: 220px;
     object-fit: contain;
     align-self: center;
     box-shadow: 10px 5px 30px;
@@ -53,7 +57,7 @@ const Image = styled.img`
 
 const Container = styled.div`
     width: 100%;
-    height: 100%;
+    min-height: 450px;
     background-color: #F2F3F1;
     display: flex;
     padding: 2em 1em;
@@ -64,11 +68,4 @@ const Container = styled.div`
         cursor: pointer;
         outline: 5px solid brown;
     }
-`
-
-const StyledLink = styled(Link)`
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    color: black;
 `

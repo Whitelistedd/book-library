@@ -79,7 +79,12 @@ const Selections = styled.div`
   justify-content: center;
 `
 
-const Image = styled.img``
+const Image = styled.img`
+  &:hover {
+    opacity:0.8;
+    cursor: pointer;
+  }
+`
 
 const Search = styled.input`
   border: none;
