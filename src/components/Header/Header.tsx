@@ -1,10 +1,9 @@
-import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import styled from 'styled-components';
 
 import HeaderBackground from '../../assets/images/headerBackground.webp';
 import SearchIcon from '../../assets/images/SearchIcon.svg';
-import { AllCategories, AllSorts } from '../../data';
-import { devices } from '../../devices';
+import { AllCategories, AllSorts, devices } from '../../data';
 import { SearchBooks, setCategory, setSortBy } from '../../redux/redux';
 import { AppDispatch } from '../../redux/store';
 
@@ -38,7 +37,7 @@ export const Header : React.FC = () => {
 
   return (
     <Container>
-        <Title>Search for books</Title>
+        <Title>Search for book</Title>
         <SearchBar>
         <Search onKeyDown={(event) => handleSearch(event)} onChange={(event) => setInputValue(event.target.value)} />
         <Image onClick={() => handleClickSearch()} src={SearchIcon} />

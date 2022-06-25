@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-export const BookSkeleton = () => {
+export const BookSkeleton : React.FC = () => {
   return (
     <Container >
       <Image />

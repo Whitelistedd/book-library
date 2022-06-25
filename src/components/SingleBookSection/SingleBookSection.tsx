@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { devices } from '../../devices';
+import { devices } from '../../data';
 import { useAppSelector } from '../../redux/store';
 import { BookFetchResponse } from '../../types';
 
